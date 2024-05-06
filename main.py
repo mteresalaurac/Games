@@ -3,13 +3,9 @@ app = FastAPI()
 
 
 import pandas as pd
-#Importo el archivo de GAMES
+#Importo los archivos que voy a usar
 games=pd.read_csv("Archivos_Comprimidos/games.csv",encoding="latin-1")
-
-#Importo el archivo de REVIEWS
-reviews_prueba= pd.read_parquet("Archivos_Comprimidos/reviews_final.parquet")
-
-#Importo el archivo de ITEMS
+reviews= pd.read_parquet("Archivos_Comprimidos/reviews_final.parquet")
 items=pd.read_parquet("Archivos_Comprimidos/items.parquet")
 
 #DataFrame joineado para funciones 1) y 2). Voy a unir games con items
@@ -25,6 +21,7 @@ async def ruta_prueba():
 #Primera Funcion
 @app.get("/PlayTimeGenre")
 async def PlayTimeGenre( genero : str ):
+    genero=genero.lower() #lo paso a minusculas por si esta escrito con mayusculas
     # 1) Paso toda al columna de generos a minuscula
     df['genres'] = df['genres'].str.lower()
     
@@ -40,8 +37,9 @@ async def PlayTimeGenre( genero : str ):
     
     #5) Imprimo resultado de funcion
     print(f"Cantidad de horas jugadas en dicho año: {int(df_ordenado.horas.iloc[0])}")
-    return
+    return 
 
+PlayTimeGenre("Action")
 
     
     
