@@ -23,7 +23,7 @@ async def ruta_prueba():
 
 
 #Primera Funcion
-@app.get("/")
+@app.get("/PlayTimeGenre")
 async def PlayTimeGenre( genero : str ):
     # 1) Paso toda al columna de generos a minuscula
     df['genres'] = df['genres'].str.lower()
