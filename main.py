@@ -16,8 +16,6 @@ df= pd.merge(items, games, on='item_id', how='inner')
 async def ruta_prueba():
     return "BOCA"
 
-
-
 #Primera Funcion
 @app.get("/PlayTimeGenre")
 async def PlayTimeGenre( genero : str ):
@@ -26,7 +24,7 @@ async def PlayTimeGenre( genero : str ):
     df['genres'] = df['genres'].str.lower()
     
     # 2) Filtro los valores que contienen el genero que me interesa
-    genero="casual" # a modo prueba
+    genero="stra" # a modo prueba
     df_filtrado = df[df.filter(like='genres').apply(lambda x: x.str.contains(genero)).any(axis=1)] 
     
     #3) Agrupo los valores por año.
@@ -39,16 +37,5 @@ async def PlayTimeGenre( genero : str ):
     print(f"Cantidad de horas jugadas en dicho año: {int(df_ordenado.horas.iloc[0])}")
     return 
 
-PlayTimeGenre("Action")
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    return "BOCA"
+PlayTimeGenre("action")
